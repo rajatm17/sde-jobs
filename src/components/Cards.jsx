@@ -6,7 +6,7 @@ const api_token =  (await import.meta.env.PUBLIC_API_TOKEN);
 export default function Cards(){
     const [jobs,setJobs] = useState([{}]);
 
-<<<<<<< HEAD
+
 useEffect(() => {
   async function fetchData() {
     try {
@@ -16,20 +16,8 @@ useEffect(() => {
       setJobs(data);
     } catch (err) {
       console.error("Failed to fetch jobs", err);
-=======
-useEffect(()=>{
-    async function fetchData(){
-    await fetch("https://api.apify.com/v2/actor-tasks/gXYtSOztqDkDEkbPV/runs/last/dataset/items?token="+api_token+"&format=json&status=SUCCEEDED")
-  .then(response => response.json())
-  .then(data => {
-    console.log(data);
-    setJobs(data);
-  })
->>>>>>> 098783f (added env file)
-    }
-  }
-  fetchData();
-}, []);
+
+
 
 
     return <>
