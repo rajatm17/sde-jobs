@@ -3,19 +3,15 @@ import "../styles/global.css";
 import React from "react";
 import { useState } from "react";
 
-export default function Navbar({name}){
+export default function Navbar(){
 
-    const [count, setCount] = useState(0);
+    
 
     return (
         <>
-            <h1 class="text-3xl font-sans md:font-serif text-center">
-                    Hello world!
+            <h1 class="text-4xl font-sans text-center mt-10 mb-6 text-white">
+                    Software Engineer Job Board
             </h1>
-            <h1>This is Navbar</h1>
-            <h1>{name}</h1>
-            <button onClick={() => setCount(count+1)}>Count</button>
-            <h1>{count}</h1>
         </>
     )
 }
