@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import Card from "./Card"
-const api_token =  (await import.meta.env.PUBLIC_API_TOKEN);
+
 
 export default function Cards(){
     const [jobs,setJobs] = useState([{}]);
