@@ -16,6 +16,10 @@ useEffect(() => {
       setJobs(data);
     } catch (err) {
       console.error("Failed to fetch jobs", err);
+    }
+  }
+  fetchData();
+}, []);
 
 
 
@@ -29,4 +33,4 @@ useEffect(() => {
         }
         </div>
     </>
-}
+
