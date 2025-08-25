@@ -1,6 +1,6 @@
 // src/pages/api/jobs.js
 export async function GET() {
-  const apiToken = import.meta.env.API_TOKEN;
+  // const apiToken = import.meta.env.API_TOKEN;
   const apiToken2 = import.meta.env.API_TOKEN2; // no PUBLIC_ prefix
   const apiUrl = `https://api.apify.com/v2/actor-tasks/Vh6MZ3EauonePlBg3/runs/last/dataset/items?token=${apiToken2}&format=json&status=SUCCEEDED`;
   const jobfeed = `gXYtSOztqDkDEkbPV`
