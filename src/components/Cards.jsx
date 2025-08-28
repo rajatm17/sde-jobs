@@ -6,14 +6,14 @@ import Card from "./Card"
 export default function Cards() {
   const [jobs, setJobs] = useState([{}]);
 
-  // useEffect(() => {
+  useEffect(() => {
     async function fetchData() {
       const res = await fetch("/api/jobs");
       const data = await res.json();
       setJobs(data);
     }
     fetchData();
-  // }, []);
+  }, []);
 
   return (
     <>
