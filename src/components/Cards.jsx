@@ -20,7 +20,7 @@ export default function Cards() {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [jobs]);
 
   return (
     <>
