@@ -5,32 +5,34 @@ export default function Cards() {
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(false);
 
+  // Function to fetch data from the API
   async function fetchData() {
     try {
-      setLoading(true); // start loading
-      const res = await fetch("/api/jobs");
+      setLoading(true); // Start loading
+      // Add timestamp to the URL to ensure fresh data is fetched every time
+      const res = await fetch(`/api/jobs?timestamp=${new Date().getTime()}`);
       const data = await res.json();
-      setJobs(data);
+      setJobs(data); // Set the fetched data to jobs
     } catch (error) {
       console.error("Error fetching jobs:", error);
     } finally {
-      setLoading(false); // stop loading
+      setLoading(false); // Stop loading
     }
   }
 
   useEffect(() => {
-    fetchData();
-  }, [jobs]);
+    fetchData(); // Fetch data when the component mounts
+  }, []); // Empty array ensures this runs only once when the component mounts
 
   return (
     <>
       <div className="flex justify-center mb-4">
         <button
-          onClick={fetchData}
-          className="px-6 py-2  text-white font-semibold rounded-lg hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 disabled:opacity-50"
-          disabled={loading}
+          onClick={fetchData} // Call fetchData on click
+          className="px-6 py-2 text-white font-semibold rounded-lg hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 disabled:opacity-50"
+          disabled={loading} // Disable button when loading
         >
-          {loading ? "Refreshing..." : "Refresh"}
+          {loading ? "Refreshing..." : "Refresh"} {/* Change text when loading */}
         </button>
       </div>
 
