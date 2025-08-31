@@ -5,34 +5,38 @@ export default function Cards() {
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  // Function to fetch data from the API
+  // Always fetch the last completed Apify run
   async function fetchData() {
     try {
-      setLoading(true); // Start loading
-      // Add timestamp to the URL to ensure fresh data is fetched every time
-      const res = await fetch(`/api/jobs?timestamp=${new Date().getTime()}`);
+      setLoading(true);
+
+      // Add timestamp to URL so no cached responses are used
+      const res = await fetch(`/api/jobs?ts=${Date.now()}`, {
+        cache: "no-store",
+      });
       const data = await res.json();
-      setJobs(data); // Set the fetched data to jobs
+      setJobs(data);
     } catch (error) {
       console.error("Error fetching jobs:", error);
     } finally {
-      setLoading(false); // Stop loading
+      setLoading(false);
     }
   }
 
+  // Fetch once when the component mounts
   useEffect(() => {
-    fetchData(); // Fetch data when the component mounts
-  }, []); // Empty array ensures this runs only once when the component mounts
+    fetchData();
+  }, []);
 
   return (
     <>
       <div className="flex justify-center mb-4">
         <button
-          onClick={fetchData} // Call fetchData on click
+          onClick={fetchData} // just re-fetch last run
           className="px-6 py-2 text-white font-semibold rounded-lg hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 disabled:opacity-50"
-          disabled={loading} // Disable button when loading
+          disabled={loading}
         >
-          {loading ? "Refreshing..." : "Refresh"} {/* Change text when loading */}
+          {loading ? "Refreshing..." : "Refresh"}
         </button>
       </div>
 
@@ -62,6 +66,7 @@ export default function Cards() {
     </>
   );
 }
+
 
 
 
