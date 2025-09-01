@@ -5,7 +5,7 @@ export async function GET() {
 
   try {
     const res = await fetch(
-      `https://api.apify.com/v2/actor-tasks/${taskId}/runs/last/dataset/items?token=${apiToken}&format=json&status=SUCCEEDED`,
+      `https://api.apify.com/v2/actor-tasks/wrinkled_lizard~career-site-job-listing-api-task/runs/last/dataset/items?token=${apiToken}&format=json&status=SUCCEEDED`,
       { cache: "no-store" }
     );
     const data = await res.json();
