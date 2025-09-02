@@ -5,12 +5,21 @@ export async function GET() {
 
   try {
     const res = await fetch(
-      `https://api.apify.com/v2/actor-tasks/wrinkled_lizard~career-site-job-listing-api-task/runs/last/dataset/items?token=${apiToken}&format=json&status=SUCCEEDED`,
+      `https://api.apify.com/v2/actor-runs?token=${apiToken}&desc=true`,
       { cache: "no-store" }
     );
     const data = await res.json();
+    const dataSetId = data.data.items[0].defaultDatasetId
+    console.log(dataSetId)
 
-    return new Response(JSON.stringify(data), {
+    const res_items = await fetch(
+      `https://api.apify.com/v2/datasets/${dataSetId}/items`,
+      { cache: "no-store" }
+    );
+
+    const items_data = await res_items.json();
+
+    return new Response(JSON.stringify(items_data), {
       status: 200,
       headers: {
         "Content-Type": "application/json",
